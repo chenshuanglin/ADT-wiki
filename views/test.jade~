@@ -1,0 +1,30 @@
+html
+ head
+  title ADT wiki
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  link(href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css" media="screen" rel="stylesheet")
+  script(src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js")
+  script(src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js")
+  script(type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js")
+  script(src="/ueditor/ueditor.all.min.js")
+  script(src="/ueditor/lang/zh-cn/zh-cn.js")
+ body
+  div.navbar.navbar-inverse.navbar-fixed-top
+    div.navbr-inner
+    p(style="color:white;font-size:24px; padding:4px 0 0 5px;") ADT wiki
+  div(style="margin-top:90px; margin-left:100px")
+    script(id="editor" type="text/plain" style="width:900px;height:400px;")
+    script.
+       var ue = UE.getEditor('editor');
+       function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+       }
+       function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+       }
+  div(style="margin-left:100px; margin-top:20px;")
+    button.btn.btn-primary(onclick="getContent()") 点击查看
