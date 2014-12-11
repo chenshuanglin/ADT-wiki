@@ -16,6 +16,7 @@ connection.connect(function(err){
 });
 
 
+//写入mysql文章记录
 var insert = function(title,content,mytype)
 {
     var now_date = new Date();
@@ -26,8 +27,17 @@ var insert = function(title,content,mytype)
     })
 }
 
-//insert("chenshuanglin", "我是无敌的","默认的");
+insert("chenshuanglin1", "我是无敌的","默认的");
+//删除指定的文章记录
+var mydelete = function(article_id)
+{
+    var sql = 'delete from article where id = ?';
+    connection.query(sql,[article_id],function(err,result){
+        console.log(result);
+    });
+}
 
+mydelete(1);
 
 connection.query('SELECT * from article', function(err, rows, fields) {
   if (err) throw err;
