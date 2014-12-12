@@ -34,7 +34,7 @@
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         
-        , toolbars: [["fullscreen","source","undo","redo","insertunorderedlist","insertorderedlist","unlink","link","cleardoc","selectall","searchreplace","preview","simpleupload","emotion","snapscreen","attachment","horizontal"]]
+        , toolbars: [["source","undo","redo","fontfamily","fontsize","forecolor","fontborder","bold","italic","underline","insertunorderedlist","insertorderedlist","unlink","link","cleardoc","selectall","searchreplace","preview","simpleupload","emotion","snapscreen","horizontal","insertcode","autotypeset","inserttable"]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
         //    'anchor':'', 'undo':''
@@ -81,11 +81,7 @@
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
-        //,fullscreen : false //是否开启初始化时即全屏，默认关闭
-
         //,imagePopup:true      //图片操作的浮层开关，默认打开
-
-        //,autoSyncData:true //自动同步编辑器要提交的数据
 
         //,emotionLocalization:false //是否开启表情本地化，默认关闭。若要开启请确保emotion文件夹下包含官网提供的images表情文件夹
 
@@ -156,8 +152,43 @@
 
         //,autoTransWordToList:false  //禁止word中粘贴进来的列表自动变成列表标签
 
+        //fontfamily
+        //字体设置 label留空支持多语言自动切换，若配置，则以配置值为准
+        //,'fontfamily':[
+        //    { label:'',name:'songti',val:'宋体,SimSun'},
+        //    { label:'',name:'kaiti',val:'楷体,楷体_GB2312, SimKai'},
+        //    { label:'',name:'yahei',val:'微软雅黑,Microsoft YaHei'},
+        //    { label:'',name:'heiti',val:'黑体, SimHei'},
+        //    { label:'',name:'lishu',val:'隶书, SimLi'},
+        //    { label:'',name:'andaleMono',val:'andale mono'},
+        //    { label:'',name:'arial',val:'arial, helvetica,sans-serif'},
+        //    { label:'',name:'arialBlack',val:'arial black,avant garde'},
+        //    { label:'',name:'comicSansMs',val:'comic sans ms'},
+        //    { label:'',name:'impact',val:'impact,chicago'},
+        //    { label:'',name:'timesNewRoman',val:'times new roman'}
+        //]
+
+        //fontsize
+        //字号
+        //,'fontsize':[10, 11, 12, 14, 16, 18, 20, 24, 36]
+
+        //打开右键菜单功能
+        //,enableContextMenu: true
+        //右键菜单的内容，可以参考plugins/contextmenu.js里边的默认菜单的例子，label留空支持国际化，否则以此配置为准
+        //,contextMenu:[
+        //    {
+        //        label:'',       //显示的名称
+        //        cmdName:'selectall',//执行的command命令，当点击这个右键菜单时
+        //        //exec可选，有了exec就会在点击时执行这个function，优先级高于cmdName
+        //        exec:function () {
+        //            //this是当前编辑器的实例
+        //            //this.ui._dialogs['inserttableDialog'].open();
+        //        }
+        //    }
+        //]
+
         //快捷菜单
-        //,shortcutMenu:["fontfamily", "fontsize", "bold", "italic", "underline", "forecolor", "backcolor", "insertorderedlist", "insertunorderedlist"]
+        ,shortcutMenu:["fontfamily","fontsize","bold","italic","underline","forecolor","insertorderedlist","insertunorderedlist"]
 
         //wordCount
         //,wordCount:true          //是否开启字数统计
@@ -178,6 +209,10 @@
         //当输入的字符数超过该值时，保存一次现场
         //,maxInputCount:1
 
+        //autoHeightEnabled
+        // 是否自动长高,默认true
+        //,autoHeightEnabled:true
+
         //scaleEnabled
         //是否可以拉伸长高,默认true(当开启时，自动长高失效)
         //,scaleEnabled:false
@@ -191,6 +226,32 @@
         //,topOffset:30
         //编辑器底部距离工具栏高度(如果参数大于等于编辑器高度，则设置无效)
         //,toolbarTopOffset:400
+
+        //autotypeset
+        //自动排版参数
+        //,autotypeset: {
+        //    mergeEmptyline: true,           //合并空行
+        //    removeClass: true,              //去掉冗余的class
+        //    removeEmptyline: false,         //去掉空行
+        //    textAlign:"left",               //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+        //    imageBlockLine: 'center',       //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+        //    pasteFilter: false,             //根据规则过滤没事粘贴进来的内容
+        //    clearFontSize: false,           //去掉所有的内嵌字号，使用编辑器默认的字号
+        //    clearFontFamily: false,         //去掉所有的内嵌字体，使用编辑器默认的字体
+        //    removeEmptyNode: false,         // 去掉空节点
+        //    //可以去掉的标签
+        //    removeTagNames: {标签名字:1},
+        //    indent: false,                  // 行首缩进
+        //    indentValue : '2em',            //行首缩进的大小
+        //    bdc2sb: false,
+        //    tobdc: false
+        //}
+
+        //tableDragable
+        //表格是否可以拖拽
+        //,tableDragable: true
+
+        //,disabledTableInTable:true  //禁止表格嵌套
 
         //sourceEditor
         //源码的查看方式,codemirror 是代码高亮，textarea是文本框,默认是codemirror
