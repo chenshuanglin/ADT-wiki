@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var myueditor = require('./routes/ueditor');
 var showArticle = require('./routes/showArticle');
 var content = require('./routes/content');
+var edit = require('./routes/test');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/edit',edit);
 app.use('/users', users);
 app.use('/ueditor/ue',myueditor);
 app.use('/showArticle',showArticle);
