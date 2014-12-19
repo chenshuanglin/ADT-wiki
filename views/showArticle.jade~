@@ -18,9 +18,8 @@ html
                             a(href="#")主页
                         li.active 文章列表
                     ul.list-group
-                        li.list-group-item 1、This is article one
-                        li.list-group-item 2、This is article one
-                        li.list-group-item 3、This is article one
-                        li.list-group-item 4、This is article one
-                        li.list-group-item 5、This is article one
+                        li.list-group-item 
+                            a.navbar-link 1、This is article one
+                        li.list-group-item 
+                            a.navbar-link 1、This is article one
                 div.col-xs-3.col-md-2

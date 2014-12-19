@@ -21,8 +21,7 @@ html
                                     a(href="#") 主页
                                 li
                                     a(href="#") 文章列表
-                                li.active
-                                    This is my article    
+                                li.active   This is my article    
                         div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
                             ol.breadcrumb
                                 li
