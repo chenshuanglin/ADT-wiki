@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -17,4 +16,20 @@ a {
     border-radius: 4px 4px 0 0;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+#search-tip
+{
+    display:none;
+    border:1px solid #ddd;
+    position:absolute; 
+    z-index:10000; 
+    margin:0px 60px 10px 0px; 
+    width:77%;
+    min-height:40px;
+}
+
+#search-list
+{
+    margin-bottom:0px;
 }

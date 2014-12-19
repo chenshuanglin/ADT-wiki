@@ -17,3 +17,19 @@ a {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+#search-tip
+{
+    display:none;
+    border:1px solid #ddd;
+    position:absolute; 
+    z-index:10000; 
+    margin:0px 60px 10px 0px; 
+    width:77%;
+    min-height:35px;
+}
+
+#search-list
+{
+    margin-bottom:0px;
+}

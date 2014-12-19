@@ -1,20 +1,29 @@
 html
     head
-    title ADT wiki
+    title ADT文档资料学习基地
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     link(href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet")
     link(href="/stylesheets/style.css" media="screen" rel="stylesheet")
     script(src="/javascripts/jquery.min.js")
+    script(src="/javascripts/search.tip.js")
     script(src="/javascripts/bootstrap.min.js")
     body
         div.navbar.navbar-inverse.navbar-fixed-top
             div.navbr-inner
-            p(style="color:white;font-size:24px; padding:4px 0 0 5px;") ADT wiki
+            p(style="color:white;font-size:24px; padding:9px 0 0 5px;") ADT文档资料学习基地
         div.container-fluid
             div.row(style="margin-top:80px;")
                 div.col-xs-3.col-md-2
                 div.col-xs-12.col-md-8
-                    div.navbar.row(style="margin-bottom:10px")
+                    div.row(style="margin:30px 60px 30px 60px;")
+                        form
+                            div.input-group
+                                input.form-control#search-input(type="text",autocomplete="off")
+                                span.input-group-btn
+                                    button.btn.btn-default(type="button") 搜 索
+                            div.navbar.row#search-tip
+                                ul.list-group#search-list
+                    div.navbar.row(style="margin:20px 40px 5px 40px;")
                         div.col-xs-12.col-md-8(style="padding-right:0px;")
                             ol.breadcrumb
                                 li.active 主页-搜索&热门文章 
@@ -24,16 +33,11 @@ html
                                     a(href="#") 编辑
                                 li
                                     a(href="#") 全部
-                    div.row(style="margin:80px 60px 30px 60px;")
-                        div.input-group
-                            input.form-control(type="text")
-                            span.input-group-btn
-                                button.btn.btn-default(type="button")搜 索
-                        ul.list-group
-                            li.list-group-item
-                                a.navbar-link 1、This is article one       
-                            li.list-group-item
-                                a.navbar-link 1、This is article one       
-                            li.list-group-item
-                                a.navbar-link 1、This is article one       
+                    ul.list-group(style="margin:0px 60px 30px 60px;")
+                        li.list-group-item
+                            a.navbar-link 1、This is article one       
+                        li.list-group-item
+                            a.navbar-link 1、This is article one       
+                        li.list-group-item
+                            a.navbar-link 1、This is article one       
                 div.col-xs-2.col-md-2
