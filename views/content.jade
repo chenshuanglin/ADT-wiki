@@ -12,18 +12,19 @@ html
             div.row(style="margin-top:80px;")
                 div.col-xs-3.col-md-2
                 div.col-xs-12.col-md-8
-                    div.navbar.row(style="margin-bottom:10px")
-                        div.col-xs-12.col-md-8(style="padding-right:0px;")
-                            ol.breadcrumb
-                                li
-                                    a(href="#") 主页
-                                li
-                                    a(href="#") 文章列表
-                                li.active   This is my article    
-                        div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
-                            ol.breadcrumb
-                                li
-                                    a(href="#") 编辑
-                    div.navbar.navbar-default(style="padding:10px 50px 10px 50px; min-height:400px; background-color:#fff !important;")
-                        p where there is a will ,there is a way!
+                    for article in articles
+                        div.navbar.row(style="margin-bottom:10px")
+                            div.col-xs-12.col-md-8(style="padding-right:0px;")
+                                ol.breadcrumb
+                                    li
+                                        a(href="#") 主页
+                                    li
+                                        a(href="#") 文章列表
+                                    li.active=article.title    
+                            div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
+                                ol.breadcrumb
+                                    li
+                                        a(href="#") 编辑
+                        div.navbar.navbar-default(style="padding:10px 50px 10px 50px; min-height:400px; background-color:#fff !important;")
+                            !{article.content}
                 div.col-xs-2.col-md-2

@@ -10,7 +10,8 @@ var users = require('./routes/users');
 var myueditor = require('./routes/ueditor');
 var showArticle = require('./routes/showArticle');
 var content = require('./routes/content');
-var edit = require('./routes/test');
+var edit = require('./routes/edit');
+var addArticle = require('./routes/addArticle');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/users', users);
 app.use('/ueditor/ue',myueditor);
 app.use('/showArticle',showArticle);
 app.use('/content',content);
+app.use('/addArticle',addArticle);
 
 //创建服务
 var server = app.listen(3000,function(){

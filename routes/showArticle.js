@@ -1,9 +1,23 @@
 var express = require('express');
 var router = express.Router();
-
+var Article = require('../models/article-db.js');
 /* GET home page. */
 router.get('/', function(req, res) {
-   res.render('showArticle');
+	var myArticle = new Article(
+		{
+			id: 1,
+    		title: "",
+    		content: "",
+    		mydate: "",
+    		mytype: "default"
+		});
+	myArticle.showAll(function(err,rows,result){
+		if(err){
+			res.send("no");
+		}
+		res.render('showArticle',{articles:rows});
+	}); 
+	
   // res.send("chenshuanglin");
 });
 

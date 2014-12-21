@@ -6,6 +6,7 @@ html
     script(src="/javascripts/jquery.min.js")
     script(src="/javascripts/bootstrap.min.js")
     script(type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js")
+    script(src="/javascripts/input.judge.js")
     script(src="/ueditor/ueditor.all.min.js")
     script(src="/ueditor/lang/zh-cn/zh-cn.js")
     body
@@ -14,23 +15,23 @@ html
             div.row
                 div.col-xs-3.col-md-2
                 div.col-xs-12.col-md-8
-                    div.input-group(style="margin-top:80px;")
+                    ol.breadcrumb(style="margin-top:80px;")
+                        li
+                            a(href="/")主页
+                        li.active 编辑
+                    div.input-group
                         span.input-group-addon 标题
-                        input.form-control(type="text" placeholder="标题是必须要的哦....")
+                        input.form-control#mytitle(type="text" placeholder="标题是必须要的哦....")
                     div(style="margin-top:10px;")
                         script(id="editor" type="text/plain" style="height:400px;")
                         script.
                             var ue = UE.getEditor('editor');
                             function getContent() {
-                                var arr = [];
-                                arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-                                arr.push("内容为：");
-                                arr.push(UE.getEditor('editor').getContent());
-                                alert(arr.join("\n"));
+                                return UE.getEditor('editor').getContent();
                             }
                             function getAllHtml() {
                                 alert(UE.getEditor('editor').getAllHtml())
                             }
                     div(style="margin-top:10px;")
-                        button.btn.btn-primary(onclick="getContent()") 点击查看
+                        button.btn.btn-primary#commit-edit 点击提交
                 div.col-xs-3.col-md-2

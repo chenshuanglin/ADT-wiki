@@ -13,11 +13,10 @@ html
                 div.col-xs-12.col-md-8
                     ol.breadcrumb
                         li
-                            a(href="#")主页
+                            a(href="/") 主页
                         li.active 文章列表
                     ul.list-group
-                        li.list-group-item 
-                            a.navbar-link 1、This is article one
-                        li.list-group-item 
-                            a.navbar-link 1、This is article one
+                        for article in articles
+                            li.list-group-item 
+                                a.navbar-link(href="/content?id="+article.id)=article.title
                 div.col-xs-3.col-md-2
