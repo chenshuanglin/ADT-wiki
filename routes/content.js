@@ -5,12 +5,12 @@ var Article = require('../models/article-db.js');
 /* GET home page. */
 router.get('/', function(req, res) {
 	var id = req.param('id');
-	if(id == "")
+	if(!id)
 	{
 		res.render("index");
 		return ;
 	}
-	article_id = parseInt(id);
+	var article_id = parseInt(id);
 	var myArticle = new Article(
 	{
 		id: 1,

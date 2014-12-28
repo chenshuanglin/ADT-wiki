@@ -30,4 +30,21 @@ $(document).ready(function(){
 			});
 		}		
 	});
+
+
+	$('#commit-update').click(function() {
+		var mytitle = $('#mytitle').val();
+		var myContent = getContent();
+		if( mytitle == "" || myContent == ""){
+			alert("标题或者内容为空");
+		}
+		else
+		{
+			$.post("updateArticle",
+			{
+				title:mytitle,
+				content:myContent
+			});
+		}		
+	});
 });

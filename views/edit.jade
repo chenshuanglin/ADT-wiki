@@ -17,21 +17,55 @@ html
                 div.col-xs-12.col-md-8
                     ol.breadcrumb(style="margin-top:80px;")
                         li
-                            a(href="/")主页
+                            a(href="/") 主页
                         li.active 编辑
                     div.input-group
                         span.input-group-addon 标题
-                        input.form-control#mytitle(type="text" placeholder="标题是必须要的哦....")
+                        - if(article)
+                            input.form-control#mytitle(type="text" placeholder="标题是必须要的哦...." value="#{article.title}")
+                        - else
+                            input.form-control#mytitle(type="text" placeholder="标题是必须要的哦....")
                     div(style="margin-top:10px;")
                         script(id="editor" type="text/plain" style="height:400px;")
-                        script.
-                            var ue = UE.getEditor('editor');
-                            function getContent() {
-                                return UE.getEditor('editor').getContent();
-                            }
-                            function getAllHtml() {
-                                alert(UE.getEditor('editor').getAllHtml())
-                            }
+                        - if(article)
+                            script.
+                                var ue = UE.getEditor('editor');
+                                ue.addListener( 'ready', function( editor )
+                                {
+                                    ue.execCommand('focus');
+                                    ue.setContent(!{JSON.stringify(article.content).replace(/<\//g, "<\\/")});
+                                });
+                                function getContent() {
+                                    return UE.getEditor('editor').getContent();
+                                }
+                                function getAllHtml() {
+                                    alert(UE.getEditor('editor').getAllHtml())
+                                }
+                                function setContent(content)
+                                {
+                                    ue.setContent(content);
+                                }
+                        - else
+                            script.
+                                var ue = UE.getEditor('editor');
+                                ue.addListener( 'ready', function( editor )
+                                {
+                                    ue.execCommand('focus');
+                                    ue.setContent("");
+                                });
+                                function getContent() {
+                                    return UE.getEditor('editor').getContent();
+                                }
+                                function getAllHtml() {
+                                    alert(UE.getEditor('editor').getAllHtml())
+                                }
+                                function setContent(content)
+                                {
+                                    ue.setContent(content);
+                                }
                     div(style="margin-top:10px;")
-                        button.btn.btn-primary#commit-edit 点击提交
+                        - if(mycontent)
+                            button.btn.btn-primary#commit-update 点击更新
+                        - else
+                            button.btn.btn-primary#commit-edit 点击提交
                 div.col-xs-3.col-md-2

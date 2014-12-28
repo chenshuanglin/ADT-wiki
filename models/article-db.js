@@ -114,4 +114,23 @@ Article.prototype.getArticleById = function (article_id,callback) {
     });
 }
 
-
+//根据指定ID更新指定的数据
+//根据指定ID获取指定的数据
+Article.prototype.updateArticleById = function (article_id,callback) {
+    var that = this;
+    pool.getConnection(function(err,connection){
+        if(err){
+            console.error('error connecting: ' + err.stack);
+            return;
+        }
+        var sql = 'update article set ? where id ='+article_id;
+        var post = {title: that.title, content: that.content , mydate:that.mydate};
+        connection.query(sql,post,function(err,rows,result){
+             if (err) {
+                console.log('get article by Id Error: '+err.message);
+            }
+            connection.release();
+            callback(err,rows,result);
+        });
+    });
+}

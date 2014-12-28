@@ -12,6 +12,7 @@ var showArticle = require('./routes/showArticle');
 var content = require('./routes/content');
 var edit = require('./routes/edit');
 var addArticle = require('./routes/addArticle');
+var updateArticle = require("./routes/updateArticle");
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/ueditor/ue',myueditor);
 app.use('/showArticle',showArticle);
 app.use('/content',content);
 app.use('/addArticle',addArticle);
+app.use('/updateArticle',updateArticle);
 
 //创建服务
 var server = app.listen(3000,function(){
