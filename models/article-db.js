@@ -13,6 +13,7 @@ var Article = function(article)
     this.id = article.id;
     this.title = article.title;
     this.content = article.content;
+    this.contentTxt = article.contentTxt;
     this.mydate = article.mydate;
     this.mytype = article.mytype;
 }
@@ -37,7 +38,7 @@ Article.prototype.save = function(callback)
             return;
         }
         console.log('connected as id ' + connection.threadId);
-        var post = {title: that.title, content: that.content , mydate:that.mydate,type: that.mytype};
+        var post = {title: that.title, content: that.content , contentTxt: that.contentTxt, mydate:that.mydate,type: that.mytype};
         connection.query('insert into article set ?',post,function(err,result){
             if(err) {   
                 console.log('insert article Error: '+ err.message);
@@ -124,10 +125,51 @@ Article.prototype.updateArticleById = function (article_id,callback) {
             return;
         }
         var sql = 'update article set ? where id ='+article_id;
-        var post = {title: that.title, content: that.content , mydate:that.mydate};
+        var post = {title: that.title, content: that.content , contentTxt: that.contentTxt, mydate:that.mydate};
         connection.query(sql,post,function(err,rows,result){
              if (err) {
                 console.log('get article by Id Error: '+err.message);
+            }
+            connection.release();
+            callback(err,rows,result);
+        });
+    });
+}
+
+//获取最后五条记录
+Article.prototype.showNewRecord = function(callback)
+{
+    pool.getConnection(function(err,connection){
+        if(err){
+            console.error('error connecting: ' + err.stack);
+            return;
+        }
+        console.log('connected as id ' + connection.threadId);
+
+        connection.query('SELECT * from article order by id desc limit 5 ', function(err, rows, result) {
+            if (err) {
+                console.log('showall article Error: '+err.message);
+            }
+            connection.release();
+//            console.log(rows);
+            callback(err,rows,result);
+        });
+    });
+}
+
+//根据输入内容搜索文章的标题和内容，找到匹配内容
+Article.prototype.getArticlesByKeyWord = function (keyword,callback) {
+    pool.getConnection(function(err,connection){
+        if(err){
+            console.error('error connecting: ' + err.stack);
+            return;
+        }
+        keyword = "%"+keyword+"%";
+        var sql = 'SELECT * FROM article where contentTxt like ? or title like ?';
+        console.log(sql);
+        connection.query(sql,[keyword,keyword],function(err,rows,result){
+             if (err) {
+                console.log('get article by keyword Error: '+err.message);
             }
             connection.release();
             callback(err,rows,result);

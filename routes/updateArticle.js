@@ -7,6 +7,8 @@ router.use('/',function (req,res) {
 	var mytitle = req.param("title");
 	var mycontent = req.param("content");
 	var id = req.param("id");
+	var contentTxt = req.param("contentTxt");
+	console.log(id);
 	if(!mytitle||!mycontent || !id)
 	{
 		res.render("index");
@@ -22,6 +24,7 @@ router.use('/',function (req,res) {
     	id: article_id,
     	title: mytitle,
     	content: mycontent,
+    	contentTxt: contentTxt,
     	mydate: mydate,
     	mytype: "default"
 	});
@@ -31,7 +34,7 @@ router.use('/',function (req,res) {
 			res.send("真不好意思，更新数据失败了^_^...饶小的一条命吧！");
 			return;
 		}
-		res.render('content',{articles:rows});
+		res.send("yes");
 	});
 });
 

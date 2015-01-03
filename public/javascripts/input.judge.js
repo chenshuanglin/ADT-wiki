@@ -1,13 +1,8 @@
 $(document).ready(function(){
-	$('#mytitle').blur(function() {
-		if ($(this).val() == "") {
-			alert("标题不能为空");
-		};
-	});
-
 	$('#commit-edit').click(function() {
 		var mytitle = $('#mytitle').val();
 		var myContent = getContent();
+		var contentTxt = getContentTxt();
 		if( mytitle == "" || myContent == ""){
 			alert("标题或者内容为空");
 		}
@@ -15,13 +10,16 @@ $(document).ready(function(){
 		{
 			$.post("addArticle",
 			{
+				sendTime: (new Date()).getTime(),
 				title:mytitle,
-				content:myContent
+				content:myContent,
+				contentTxt:contentTxt
 			},
 			function(data,status){
 				if(data == "yes")
 				{
-					location.href="/showArticle";
+					var mytime = (new Date()).getTime();
+					location.href="/showArticle?sendTime"+mytime;
 				}
 				else
 				{
@@ -35,6 +33,8 @@ $(document).ready(function(){
 	$('#commit-update').click(function() {
 		var mytitle = $('#mytitle').val();
 		var myContent = getContent();
+		var id = getArticleId();
+		var contentTxt = getContentTxt();
 		if( mytitle == "" || myContent == ""){
 			alert("标题或者内容为空");
 		}
@@ -42,8 +42,22 @@ $(document).ready(function(){
 		{
 			$.post("updateArticle",
 			{
+				sendTime: (new Date()).getTime(),
 				title:mytitle,
-				content:myContent
+				content:myContent,
+				id:id,
+				contentTxt:contentTxt
+			},
+			function(data,status){
+				if(data == "yes")
+				{
+					var mytime = (new Date()).getTime();
+					location.href="/content?id="+id+"&sendTime="+mytime;
+				}
+				else
+				{
+					alert("不小心就更新失败了^__^");
+				}
 			});
 		}		
 	});

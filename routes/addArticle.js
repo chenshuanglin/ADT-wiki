@@ -6,6 +6,7 @@ router.use('/',function (req,res) {
 	//前台页面获取数据
 	var mytitle = req.param("title");
 	var mycontent = req.param("content");
+	var contentTxt = req.param("contentTxt");
 	if(mytitle == "" || mycontent == "")
 	{
 		res.render("index");
@@ -20,6 +21,7 @@ router.use('/',function (req,res) {
     	id: 1,
     	title: mytitle,
     	content: mycontent,
+		contentTxt: contentTxt,
     	mydate: mydate,
     	mytype: "default"
 	});

@@ -13,6 +13,7 @@ var content = require('./routes/content');
 var edit = require('./routes/edit');
 var addArticle = require('./routes/addArticle');
 var updateArticle = require("./routes/updateArticle");
+var search = require("./routes/search");
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/showArticle',showArticle);
 app.use('/content',content);
 app.use('/addArticle',addArticle);
 app.use('/updateArticle',updateArticle);
+app.use('/search',search);
 
 //创建服务
 var server = app.listen(3000,function(){

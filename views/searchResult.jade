@@ -1,0 +1,61 @@
+html
+    head
+    title ADT文档资料学习基地
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="pragma" content="no-cache")
+    meta(http-equiv="cache-control" content="no-cache")
+    meta(http-equiv="expires" content="0")
+    link(href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet")
+    link(href="/stylesheets/style.css" media="screen" rel="stylesheet")
+    script(src="/javascripts/jquery.min.js")
+    script(src="/javascripts/search.tip.js")
+    script(src="/javascripts/bootstrap.min.js")
+    body
+        include ./header.jade
+        div.container-fluid
+            div.row(style="margin-top:50px;")
+                div.col-xs-3.col-md-2
+                div.col-xs-12.col-md-8
+                    div.navbar.row(style="margin:10px 60px 0px 60px;")
+                        ol.breadcrumb
+                            li
+                                a(href="/") 主页
+                            li.active 搜索结果 
+                    div.row(style="margin:0px 60px 10px 60px;")
+                        form(action="/search" method="get" autocomplete='off')
+                            div.input-group
+                                input.form-control#search-input(type="text",autocomplete="off" name="keyword" value=""+keyword)
+                                span.input-group-btn
+                                    button.btn.btn-default(type="button") 搜 索
+                    div.row(style="margin:0px 60px 15px 60px; min-height:320px;")
+                        for searchBox in searchBoxs
+                            div.boxs
+                                ul(style="list-style-type:none; padding:0")
+                                    li.search-li
+                                        a(href="/content?id="+searchBox.id target="_blank")=searchBox.title
+                                    li.search-li !{searchBox.content}
+                    div.row(style="margin:0px 60px 15px 60px;")
+                        nav
+                            ul.pagination
+                                if beforeNumber == '0'
+                                    li.disable
+                                        a &laquo;
+                                else
+                                   li
+                                        a(href="/search?keyword="+keyword+"&number="+(beforeNumber-1)) &laquo;
+                                - for (var i = 0 ; i < pageNum ; i++){
+                                    if i == beforeNumber
+                                        li.active
+                                            a=i+1
+                                    else
+                                        li
+                                            a(href="/search?keyword="+keyword+"&number="+i)=i+1
+                                -}
+                                - num = beforeNumber+1
+                                if pageNum == num
+                                    li.disable
+                                        a &raquo;
+                                else
+                                    li
+                                        a(href="/search?keyword="+keyword+"&number="+num) &raquo;
+                div.col-xs-2.col-md-2

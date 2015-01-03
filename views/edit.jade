@@ -45,6 +45,14 @@ html
                                 {
                                     ue.setContent(content);
                                 }
+                                function getContentTxt()
+                                {
+                                    return ue.getContentTxt();
+                                }
+                                function getArticleId()
+                                {
+                                    return "#{article.id}";
+                                }
                         - else
                             script.
                                 var ue = UE.getEditor('editor');
@@ -59,13 +67,17 @@ html
                                 function getAllHtml() {
                                     alert(UE.getEditor('editor').getAllHtml())
                                 }
+                                function getContentTxt()
+                                {
+                                    return ue.getContentTxt();
+                                }
                                 function setContent(content)
                                 {
                                     ue.setContent(content);
                                 }
                     div(style="margin-top:10px;")
-                        - if(mycontent)
+                        if(article)
                             button.btn.btn-primary#commit-update 点击更新
-                        - else
+                        else
                             button.btn.btn-primary#commit-edit 点击提交
                 div.col-xs-3.col-md-2

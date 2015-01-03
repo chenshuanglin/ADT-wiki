@@ -16,6 +16,7 @@ router.get('/', function(req, res) {
 		id: 1,
     	title: "",
     	content: "",
+    	contentTxt: "",
     	mydate: "",
     	mytype: "default"
 	});

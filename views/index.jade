@@ -10,32 +10,29 @@ html
     body
         include ./header.jade
         div.container-fluid
-            div.row(style="margin-top:80px;")
+            div.row(style="margin-top:50px;")
                 div.col-xs-3.col-md-2
                 div.col-xs-12.col-md-8
-                    div.row(style="margin:30px 60px 30px 60px;")
-                        form
+                    div.navbar.row(style="margin:10px 40px 5px 40px;")
+                        div.col-xs-12.col-md-8(style="padding-right:0px;")
+                            ol.breadcrumb
+                                li.active 主页-搜索&最新内容 
+                        div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
+                            ol.breadcrumb
+                                li
+                                    a(href="/edit") 新建
+                                li
+                                    a(href="/showArticle") 全部
+                    div.row(style="margin:0px 60px 30px 60px;")
+                        form(action="/search" method="get")
                             div.input-group
-                                input.form-control#search-input(type="text",autocomplete="off")
+                                input.form-control#search-input(type="text",autocomplete="off" name="keyword")
                                 span.input-group-btn
                                     button.btn.btn-default(type="button") 搜 索
                             div.navbar.row#search-tip
                                 ul.list-group#search-list
-                    div.navbar.row(style="margin:20px 40px 5px 40px;")
-                        div.col-xs-12.col-md-8(style="padding-right:0px;")
-                            ol.breadcrumb
-                                li.active 主页-搜索&热门文章 
-                        div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
-                            ol.breadcrumb
-                                li
-                                    a(href="/edit") 编辑
-                                li
-                                    a(href="/showArticle") 全部
                     ul.list-group(style="margin:0px 60px 30px 60px;")
-                        li.list-group-item
-                            a.navbar-link 1、This is article one       
-                        li.list-group-item
-                            a.navbar-link 1、This is article one       
-                        li.list-group-item
-                            a.navbar-link 1、This is article one       
+                        for article in articles
+                            li.list-group-item
+                                a.navbar-link(href="/content?id="+article.id)=article.title
                 div.col-xs-2.col-md-2
