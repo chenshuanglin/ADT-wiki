@@ -26,8 +26,13 @@ html
                             div.input-group
                                 input.form-control#search-input(type="text",autocomplete="off" name="keyword" value=""+keyword)
                                 span.input-group-btn
-                                    button.btn.btn-default(type="button") 搜 索
+                                    button.btn.btn-default(type="submit") 搜 索
                     div.row(style="margin:0px 60px 15px 60px; min-height:320px;")
+                        if length == 0 
+                            div.alert.alert-info(role="alert")
+                                在数据库中未找到任何数据
+                        else
+                            p 已为你找到相关记录：#{length}
                         for searchBox in searchBoxs
                             div.boxs
                                 ul(style="list-style-type:none; padding:0")
@@ -51,11 +56,11 @@ html
                                         li
                                             a(href="/search?keyword="+keyword+"&number="+i)=i+1
                                 -}
-                                - num = beforeNumber+1
+                                - num = beforeNumber-1+2
                                 if pageNum == num
                                     li.disable
                                         a &raquo;
-                                else
+                                 else
                                     li
                                         a(href="/search?keyword="+keyword+"&number="+num) &raquo;
                 div.col-xs-2.col-md-2
