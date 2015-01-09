@@ -11,8 +11,9 @@ html
         include ./header.jade
         div.container-fluid
             div.row(style="margin-top:50px;")
-                div.col-xs-3.col-md-2
-                div.col-xs-12.col-md-8
+                div.col-xs-4.col-md-3.sidebar(style="margin-top:30px;")
+                    include ./left.jade
+                div.col-xs-13.col-md-8
                     div.navbar.row(style="margin:10px 40px 5px 40px;")
                         div.col-xs-12.col-md-8(style="padding-right:0px;")
                             ol.breadcrumb
@@ -35,4 +36,4 @@ html
                         for article in articles
                             li.list-group-item
                                 a.navbar-link(href="/content?id="+article.id)=article.title
-                div.col-xs-2.col-md-2
+                div.col-xs-2.col-md-1
