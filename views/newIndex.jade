@@ -1,0 +1,295 @@
+doctype html
+//if IE 8
+  html.ie8(lang='en')  
+//if IE 9
+  html.ie9(lang='en')  
+// [if !IE] <!
+html(lang='en')
+  // <![endif]
+  // BEGIN HEAD
+  head
+    meta(charset='utf-8')
+    title Metronic | Layouts - Boxed Page
+    meta(content='width=device-width, initial-scale=1.0', name='viewport')
+    meta(content='', name='description')
+    meta(content='', name='author')
+    // BEGIN GLOBAL MANDATORY STYLES
+    link(href='media/css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    link(href='media/css/bootstrap-responsive.min.css', rel='stylesheet', type='text/css')
+    link(href='media/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='media/css/style-metro.css', rel='stylesheet', type='text/css')
+    link(href='media/css/style.css', rel='stylesheet', type='text/css')
+    link(href='media/css/style-responsive.css', rel='stylesheet', type='text/css')
+    link#style_color(href='media/css/default.css', rel='stylesheet', type='text/css')
+    link(href='media/css/uniform.default.css', rel='stylesheet', type='text/css')
+    // END GLOBAL MANDATORY STYLES
+    link(rel='shortcut icon', href='media/image/favicon.ico')
+  // END HEAD
+  // BEGIN BODY
+  body.page-header-fixed.page-boxed
+    // BEGIN HEADER
+    .header.navbar.navbar-inverse.navbar-fixed-top
+      // BEGIN TOP NAVIGATION BAR
+      .navbar-inner
+        .container
+          // BEGIN LOGO
+          a.brand(href='index.html')
+            ADT文档系统
+          // END LOGO
+          // BEGIN RESPONSIVE MENU TOGGLER
+          a.btn-navbar.collapsed(href='javascript:;', data-toggle='collapse', data-target='.nav-collapse')
+            img(src='media/image/menu-toggler.png', alt='')
+          // END RESPONSIVE MENU TOGGLER
+          // BEGIN TOP NAVIGATION MENU
+          ul.nav.pull-right
+            // BEGIN NOTIFICATION DROPDOWN
+            li#header_inbox_bar.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                i.icon-envelope
+                span.badge 5
+              ul.dropdown-menu.extended.inbox
+                li
+                  p 更新了5篇新文章
+                li
+                  a(href='inbox.html?a=view')
+                    span.photo
+                      img(src='media/image/avatar2.jpg', alt='')
+                    span.subject
+                      span.from csl
+                      span.time Just Now
+                    span.message
+                      | Vivamus sed auctor nibh congue nibh. auctor nibh
+                      | auctor nibh...
+                li
+                  a(href='inbox.html?a=view')
+                    span.photo
+                      img(src='media/image/avatar3.jpg', alt='')
+                    span.subject
+                      span.from zrs
+                      span.time 16 mins
+                    span.message
+                      | Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
+                      | auctor nibh..
+                li.external
+                  a(href='inbox.html')
+                    | 查看更多文章 
+                    i.m-icon-swapright
+            li#header_inbox_bar.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                i.icon-cogs 
+            // END INBOX DROPDOWN
+            // BEGIN TODO DROPDOWN
+            // END USER LOGIN DROPDOWN
+          // END TOP NAVIGATION MENU
+      // END TOP NAVIGATION BAR
+    // END HEADER
+    .container
+      // BEGIN CONTAINER
+      .page-container.row-fluid
+        // BEGIN SIDEBAR
+        .page-sidebar.nav-collapse.collapse
+          // BEGIN SIDEBAR MENU
+          ul.page-sidebar-menu
+            li
+              // BEGIN SIDEBAR TOGGLER BUTTON
+              .sidebar-toggler.hidden-phone
+              // BEGIN SIDEBAR TOGGLER BUTTON
+            li
+              // BEGIN RESPONSIVE QUICK SEARCH FORM
+              form.sidebar-search
+                .input-box
+                  a.remove(href='javascript:;')
+                  input(type='text', placeholder='Search...')
+                  input.submit(type='button', value=' ')
+              // END RESPONSIVE QUICK SEARCH FORM
+            li.active
+              a(href='index.html')
+                i.icon-home
+                span.title ADT文档系统介绍
+                span.selected
+            li.start
+              a(href='javascript:;')
+                i.icon-folder-open
+                span.title 公共文档
+                span.arrow
+              ul.sub-menu
+                li
+                  a(href='layout_horizontal_sidebar_menu.html')
+                    | 功能文档
+                li
+                  a(href='layout_horizontal_menu1.html')
+                    | 性能文档
+            li
+              a(href='javascript:;')
+                i.icon-folder-open
+                span.title 项目文档
+                span.arrow
+              ul.sub-menu
+                li
+                  a(href='ui_general.html')
+                    | 6.0
+                    span.arrow
+                  ul.sub-menu
+                    li
+                      a(href='#') Sample Link 1
+                    li
+                      a(href='#') Sample Link 2
+                    li
+                      a(href='#') Sample Link 3
+                li
+                  a(href='ui_buttons.html')
+                    | 6.1
+                    span.arrow
+                  ul.sub-menu
+                    li
+                      a(href='#') Sample Link 1
+                    li
+                      a(href='#') Sample Link 2
+                    li
+                      a(href='#') Sample Link 3
+            li
+              a(href='javascript:;')
+                i.icon-briefcase
+                span.title 个人文档
+                span.arrow
+              ul.sub-menu
+                li
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    | 								crc
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 csl
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 bobe
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 RC
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 hj
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 zrs
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 jw
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 zw
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 hz
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 nyz
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 zhy
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 cl
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 tzx
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 gbl
+                  a(href='page_blog.html')
+                    i.icon-comments
+                    |                 njj
+             li
+              a(href='javascript:;')
+                i.icon-table
+                span.title 新员工学习文档
+            li
+              a(href='javascript:;')
+                i.icon-gift
+                span.title 其他文档
+            li
+              a(href='javascript:;')
+                i.icon-map-marker
+                span.title 相关链接
+                span.arrow
+              ul.sub-menu
+                li
+                  a(href='maps_google.html')
+                    | 局域网资源
+                li
+                  a(href='maps_vector.html')
+                    | 外部网资源
+            li.last
+              a(href='charts.html')
+                i.icon-bar-chart
+                span.title 上传文档管理
+          // END SIDEBAR MENU
+        // END SIDEBAR
+        // BEGIN PAGE
+        .page-content
+          // BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM
+          #portlet-config.modal.hide
+            .modal-header
+              button.close(data-dismiss='modal', type='button')
+              h3 portlet Settings
+            .modal-body
+              p Here will be a configuration form
+          // END SAMPLE PORTLET CONFIGURATION MODAL FORM
+          // BEGIN PAGE CONTAINER
+          .container-fluid
+            // BEGIN PAGE HEADER
+            .row-fluid
+              .span12
+                // BEGIN STYLE CUSTOMIZER
+                h3.page-title
+                  | ADT文档
+                ul.breadcrumb
+                  li
+                    i.icon-home
+                    a(href='index.html') 主页
+                    i.icon-angle-right
+                  li
+                    a(href='#') 系统介绍
+                // END PAGE TITLE & BREADCRUMB
+            // END PAGE HEADER
+            // BEGIN PAGE CONTENT
+            .row-fluid
+              .span12
+                | 这里开始介绍
+            // END PAGE CONTENT
+          // END PAGE CONTAINER
+        // END PAGE
+    // END CONTAINER
+    // BEGIN FOOTER
+    .footer
+      .container
+        .footer-inner
+          | 2013 © Metronic by keenthemes.
+        .footer-tools
+          span.go-top
+            i.icon-angle-up
+    // END FOOTER
+    // BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time)
+    // BEGIN CORE PLUGINS
+    script(src='media/js/jquery-1.10.1.min.js', type='text/javascript')
+    script(src='media/js/jquery-migrate-1.2.1.min.js', type='text/javascript')
+    // IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip
+    script(src='media/js/jquery-ui-1.10.1.custom.min.js', type='text/javascript')
+    script(src='media/js/bootstrap.min.js', type='text/javascript')
+    //if lt IE 9
+      script(src='media/js/excanvas.min.js')
+      script(src='media/js/respond.min.js')
+    script(src='media/js/jquery.slimscroll.min.js', type='text/javascript')
+    script(src='media/js/jquery.blockui.min.js', type='text/javascript')
+    script(src='media/js/jquery.cookie.min.js', type='text/javascript')
+    script(src='media/js/jquery.uniform.min.js', type='text/javascript')
+    // END CORE PLUGINS
+    script(src='media/js/app.js')
+    script.
+      jQuery(document).ready(function() {
+      App.init();
+      });
+    // END JAVASCRIPTS
+    script(type='text/javascript').
+      var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();
+  // END BODY

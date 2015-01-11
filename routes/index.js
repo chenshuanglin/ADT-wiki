@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 		if(err){
 			res.send("no");
 		}
-		res.render('index',{articles:rows});
+		res.render('newIndex',{articles:rows});
 	}); 
   // res.send("chenshuanglin");
 });
