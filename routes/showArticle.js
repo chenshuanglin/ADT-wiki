@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 		if(err){
 			res.send("no");
 		}
-		res.render('main',{articles:rows});
+		res.render('main',{selectName:"性能文档"});
 	}); 
 	
   // res.send("chenshuanglin");
