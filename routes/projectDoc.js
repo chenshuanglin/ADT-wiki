@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET users listing. */
 router.get('/', function(req, res) {
-   res.render('test');
-  // res.send("chenshuanglin");
+  res.render('projectDoc',{selectName:selectName,selectParent:"项目管理"});
 });
 
 module.exports = router;

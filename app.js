@@ -8,12 +8,15 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var myueditor = require('./routes/ueditor');
-var showArticle = require('./routes/showArticle');
+//公共文档路由
+var publicDoc = require('./routes/publicDoc');
 var content = require('./routes/content');
 var edit = require('./routes/edit');
 var addArticle = require('./routes/addArticle');
 var updateArticle = require("./routes/updateArticle");
 var search = require("./routes/search");
+//项目路由
+var projectDoc = require("./routes/projectDoc");
 
 var app = express();
 
@@ -33,11 +36,13 @@ app.use('/', routes);
 app.use('/edit',edit);
 app.use('/users', users);
 app.use('/ueditor/ue',myueditor);
-app.use('/showArticle',showArticle);
+app.use('/publicDoc',publicDoc);
 app.use('/content',content);
 app.use('/addArticle',addArticle);
 app.use('/updateArticle',updateArticle);
 app.use('/search',search);
+//项目文档
+app.use('/projectDoc',projectDoc);
 
 //创建服务
 var server = app.listen(3000,function(){

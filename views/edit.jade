@@ -10,15 +10,10 @@ html
     script(src="/ueditor/ueditor.all.min.js")
     script(src="/ueditor/lang/zh-cn/zh-cn.js")
     body
-        include ./header.jade
         div.container-fluid
             div.row
-                div.col-xs-3.col-md-2
-                div.col-xs-12.col-md-8
-                    ol.breadcrumb(style="margin-top:80px;")
-                        li
-                            a(href="/") 主页
-                        li.active 编辑
+                div.col-md-1
+                div.col-md-10(style="margin-top:10px;")
                     div.input-group
                         span.input-group-addon 标题
                         - if(article)
@@ -80,4 +75,4 @@ html
                             button.btn.btn-primary#commit-update 点击更新
                         else
                             button.btn.btn-primary#commit-edit 点击提交
-                div.col-xs-3.col-md-2
+                div.col-md-1

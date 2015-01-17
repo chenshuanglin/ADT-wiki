@@ -1,0 +1,56 @@
+// BEGIN HEADER
+.header.navbar.navbar-inverse.navbar-fixed-top
+  // BEGIN TOP NAVIGATION BAR
+  .navbar-inner
+    .container
+      // BEGIN LOGO
+      a.brand(href='index.html')
+        ADT文档系统
+      // END LOGO
+      // BEGIN RESPONSIVE MENU TOGGLER
+      a.btn-navbar.collapsed(href='javascript:;', data-toggle='collapse', data-target='.nav-collapse')
+        img(src='media/image/menu-toggler.png', alt='')
+      // END RESPONSIVE MENU TOGGLER
+      // BEGIN TOP NAVIGATION MENU
+      ul.nav.pull-right
+        // BEGIN NOTIFICATION DROPDOWN
+        li#header_inbox_bar.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            i.icon-envelope
+            span.badge 5
+          ul.dropdown-menu.extended.inbox
+            li
+              p 更新了5篇新文章
+            li
+              a(href='inbox.html?a=view')
+                span.photo
+                  img(src='media/image/avatar2.jpg', alt='')
+                span.subject
+                  span.from csl
+                  span.time Just Now
+                span.message
+                  | Vivamus sed auctor nibh congue nibh. auctor nibh
+                  | auctor nibh...
+            li
+              a(href='inbox.html?a=view')
+                span.photo
+                  img(src='media/image/avatar3.jpg', alt='')
+                span.subject
+                  span.from zrs
+                  span.time 16 mins
+                span.message
+                  | Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh
+                  | auctor nibh..
+            li.external
+              a(href='inbox.html')
+                | 查看更多文章 
+                i.m-icon-swapright
+        li#header_inbox_bar.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            i.icon-cogs 
+        // END INBOX DROPDOWN
+        // BEGIN TODO DROPDOWN
+        // END USER LOGIN DROPDOWN
+      // END TOP NAVIGATION MENU
+  // END TOP NAVIGATION BAR
+// END HEADER

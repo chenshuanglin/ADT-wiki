@@ -1,0 +1,45 @@
+.page-content
+  // BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM
+  #portlet-config.modal.hide
+    .modal-header
+      button.close(data-dismiss='modal', type='button')
+      h3 portlet Settings
+    .modal-body
+      p Here will be a configuration form
+  // END SAMPLE PORTLET CONFIGURATION MODAL FORM
+  // BEGIN PAGE CONTAINER
+  .container-fluid
+    // BEGIN PAGE HEADER
+    .row-fluid
+      .span12
+        // BEGIN STYLE CUSTOMIZER
+        ul.breadcrumb(style="margin-top:20px; margin-bottom:10px;")
+          li
+            i.icon-home
+            a(href='/') 主页
+            i.icon-angle-right
+
+          li
+            a(href='#') #{selectParent}
+        p(style="float:right")
+          a.btn
+            i.icon-plus 添加文章
+        // END PAGE TITLE & BREADCRUMB
+    // END PAGE HEADER
+    // BEGIN PAGE CONTENT
+    .row-fluid
+      .span12
+        ul.timeline
+          li.timeline-grey
+            .timeline-body(style="margin-left:10px;")
+              h2 ICT 2013 20th International Conference
+              .timeline-content
+                img.timeline-img.pull-left(src='media/image/2.jpg', alt='')
+                |                     Ricebean black-eyed pea maize scallion green bean spinach cabbage jicama bell pepper carrot onion corn plantain garbanzo. Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress.
+                |                     Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jicama bell pepper carrot onion corn plantain garbanzo.
+              .timeline-footer
+                a.btn.green.pull-right(href='#')
+                  | Read more 
+                  i.m-icon-swapright.m-icon-white
+    // END PAGE CONTENT
+  // END PAGE CONTAINER

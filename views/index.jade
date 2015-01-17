@@ -7,33 +7,12 @@ html
     script(src="/javascripts/jquery.min.js")
     script(src="/javascripts/search.tip.js")
     script(src="/javascripts/bootstrap.min.js")
-    body
+    body(style="overflow-y:hidden")
         include ./header.jade
-        div.container-fluid
+        div.container(style="width:100%;")
             div.row(style="margin-top:50px;")
-                div.col-xs-4.col-md-3.sidebar(style="margin-top:30px;")
+                div.col-md-2(style="padding-left:0")
                     include ./left.jade
-                div.col-xs-13.col-md-8
-                    div.navbar.row(style="margin:10px 40px 5px 40px;")
-                        div.col-xs-12.col-md-8(style="padding-right:0px;")
-                            ol.breadcrumb
-                                li.active 主页-搜索&最新内容 
-                        div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
-                            ol.breadcrumb
-                                li
-                                    a(href="/edit") 新建
-                                li
-                                    a(href="/showArticle") 全部
-                    div.row(style="margin:0px 60px 30px 60px;")
-                        form(action="/search" method="get")
-                            div.input-group
-                                input.form-control#search-input(type="text",autocomplete="off" name="keyword")
-                                span.input-group-btn
-                                    button.btn.btn-default(type="submit") 搜 索
-                            div.navbar.row#search-tip
-                                ul.list-group#search-list
-                    ul.list-group(style="margin:0px 60px 30px 60px;")
-                        for article in articles
-                            li.list-group-item
-                                a.navbar-link(href="/content?id="+article.id)=article.title
-                div.col-xs-2.col-md-1
+                div.col-md-10(style="padding-right:0")
+                    div.embed-responsive.embed-responsive-16by9
+                        iframe.embed-responsive-item(src="http://www.cnblogs.com/GaoHuhu/archive/2012/09/26/2703474.html" style="overflow:scroll; height:100%;" name="main")

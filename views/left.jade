@@ -1,18 +1,116 @@
-div.panel.panel-default
-	div.panel-heading 文档分类
-	div.panel-body
-		script(src="/javascripts/dtree.js")
-		link(rel="StyleSheet" href="/stylesheets/dtree.css" type="text/css")
-		script.
-			d = new dTree('d');
-			d.add(0,-1,'ADT文档系统');
-			d.add(1,0,'公共文档','example01.html');
-			d.add(2,0,'当前文档','example01.html');
-			d.add(3,1,'性能文档','example01.html');
-			d.add(4,1,'功能文档','example01.html');
-			d.add(5,0,'个人文档','example01.html');
-			d.add(6,2,'AD5.5','example01.html');
-			d.add(7,3,'Node 1.1.1','example01.html');
-			d.add(8,5,'csl','example01.html');
-			document.write(d);
-
+.page-sidebar.nav-collapse.collapse
+  // BEGIN SIDEBAR MENU
+  ul.page-sidebar-menu
+    li
+      // BEGIN SIDEBAR TOGGLER BUTTON
+      .sidebar-toggler.hidden-phone
+      // BEGIN SIDEBAR TOGGLER BUTTON
+    li
+      // BEGIN RESPONSIVE QUICK SEARCH FORM
+      form.sidebar-search
+        .input-box
+          a.remove(href='javascript:;')
+          input(type='text', placeholder='Search...')
+          input.submit(type='button', value=' ')
+      // END RESPONSIVE QUICK SEARCH FORM
+    if selectParent == "ADT文档系统介绍"
+      li.active
+        a(href='/')
+          i.icon-home
+          span.title ADT文档系统介绍
+          span.selected
+    else
+      li.start
+        a(href='/')
+          i.icon-home
+          span.title ADT文档系统介绍
+    - items = ["功能文档","性能文档","自动化测试","安全测试","模块原理","技术规划","问题分析定位"]
+    if selectParent == "公共文档"
+      li.active
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 公共文档
+          span.selected
+          span.arrow
+        ul.sub-menu
+          each item, i in items
+            if item == selectName
+              li.active
+                a(href='/publicDoc?selectName='+item)
+                  | #{item}
+            else
+              li
+                a(href='/publicDoc?selectName='+item)
+                  | #{item}
+    else
+      li
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 公共文档
+          span.selected
+          span.arrow
+        ul.sub-menu
+          each item, i in items
+            li
+              a(href='/publicDoc?selectName='+item)
+                | #{item}
+    - projects = ["6.0","6.1"]
+    if selectParent == "项目管理"
+    else
+      li
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 项目管理
+          span.arrow
+        ul.sub-menu
+          each project in projects
+            li
+              a(href='ui_general.html')
+                | #{project}
+                span.arrow
+              - childProjects = [];
+              if project == "6.0"
+                - childProjects = ["Sample link 1","Sample link 1"]
+              else
+                - childProjects = ["Sample link 1","Sample link 2","Sample link 3"]
+              ul.sub-menu
+                each childProject in childProjects
+                  li
+                    a(href='#') #{childProject}
+    li
+      a(href='javascript:;')
+        i.icon-briefcase
+        span.title 个人文档
+        span.arrow
+      ul.sub-menu
+        - persons = ["crc","csl","cl","hz","bobe","hj","cjp","nyz","jw","zhy","tzx","gbl","zrs","zw"]
+        each person in persons
+          li
+            a(href='page_blog.html')
+              i.icon-comments
+              |                 #{person}
+     li
+      a(href='javascript:;')
+        i.icon-table
+        span.title 新员工学习文档
+    li
+      a(href='javascript:;')
+        i.icon-gift
+        span.title 其他文档
+    li
+      a(href='javascript:;')
+        i.icon-map-marker
+        span.title 相关链接
+        span.arrow
+      ul.sub-menu
+        - links = ["局域网链接","外部网链接"]
+        each link in links
+          li
+            a(href='maps_google.html')
+              | #{link}
+    li.last
+      a(href='charts.html')
+        i.icon-bar-chart
+        span.title 上传文档管理
+  // END SIDEBAR MENU
+// END SIDEBAR

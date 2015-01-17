@@ -17,7 +17,8 @@ router.get('/', function(req, res) {
 		if(err){
 			res.send("no");
 		}
-		res.render('newIndex',{articles:rows});
+	//	res.render('newIndex',{articles:rows});
+		res.render('newIndex',{selectParent:"ADT文档系统介绍"});
 	}); 
   // res.send("chenshuanglin");
 });

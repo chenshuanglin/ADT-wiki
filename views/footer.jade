@@ -1,0 +1,32 @@
+// BEGIN FOOTER
+.footer
+  .container
+    .footer-inner
+      | 2013 © Metronic by keenthemes.
+    .footer-tools
+      span.go-top
+        i.icon-angle-up
+// END FOOTER
+// BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time)
+// BEGIN CORE PLUGINS
+script(src='media/js/jquery-1.10.1.min.js', type='text/javascript')
+script(src='media/js/jquery-migrate-1.2.1.min.js', type='text/javascript')
+// IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip
+script(src='media/js/jquery-ui-1.10.1.custom.min.js', type='text/javascript')
+script(src='media/js/bootstrap.min.js', type='text/javascript')
+//if lt IE 9
+  script(src='media/js/excanvas.min.js')
+  script(src='media/js/respond.min.js')
+script(src='media/js/jquery.slimscroll.min.js', type='text/javascript')
+script(src='media/js/jquery.blockui.min.js', type='text/javascript')
+script(src='media/js/jquery.cookie.min.js', type='text/javascript')
+script(src='media/js/jquery.uniform.min.js', type='text/javascript')
+// END CORE PLUGINS
+script(src='media/js/app.js')
+script.
+  jQuery(document).ready(function() {
+  App.init();
+  });
+// END JAVASCRIPTS
+script(type='text/javascript').
+  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('scrip ga.t= 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'statdoubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();
