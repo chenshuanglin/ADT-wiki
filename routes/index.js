@@ -5,7 +5,7 @@ var Article = require('../models/article-db.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	var myArticle = new Article(
+/*	var myArticle = new Article(
 		{
 			id: 1,
     		title: "",
@@ -18,8 +18,10 @@ router.get('/', function(req, res) {
 			res.send("no");
 		}
 	//	res.render('newIndex',{articles:rows});
-		res.render('newIndex',{selectParent:"ADT文档系统介绍"});
 	}); 
+*/
+	
+	res.render('newIndex',{selectParent:"ADT文档系统介绍"});
   // res.send("chenshuanglin");
 });
 
