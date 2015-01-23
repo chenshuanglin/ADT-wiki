@@ -22,7 +22,8 @@ OpreatePro.prototype.jsonToProject = function(jsonObj)
 	}
 	return projects;
 }
-//增加项目到文件中
+
+//增加项目
 OpreatePro.prototype.addProject =  function(project,callback){
 	that = this;
 	fs.readFile(that.filename,'utf8',function(err,data){
@@ -41,8 +42,9 @@ OpreatePro.prototype.addProject =  function(project,callback){
 		if(judge)
 		{
 			projects.push(project);
+			fs.writeFileSync(that.filename,JSON.stringify(projects));
 		}
-		callback(err,projects,judge);
+		callback(err,judge);
 	});
 }
 
@@ -63,15 +65,18 @@ OpreatePro.prototype.deleteProject = function(projectName,callback)
 	fs.readFile(that.filename,'utf8',function(err,data){
 		var jsonObj = JSON.parse(data);
 		var projects = that.jsonToProject(jsonObj);
+		var judge = false;
 		for(var i = 0 ; i < projects.length ; i++)
 		{
 			if(projects[i].name == projectName)
 			{
+				judge = true;
 				projects.splice(i,1);
+				fs.writeFileSync(that.filename,JSON.stringify(projects));
 				break;
 			}
 		}
-		callback(err,projects);
+		callback(err,judge);
 	});
 }
 
@@ -82,14 +87,18 @@ OpreatePro.prototype.updateProject = function(oldName,newName,callback)
 	fs.readFile(that.filename,'utf8',function(err,data){
 		var jsonObj = JSON.parse(data);
 		var projects = that.jsonToProject(jsonObj);
+		var judge = false;
 		for(var i = 0 ; i < projects.length ; i++)
 		{
 			if(projects[i].name == oldName)
 			{
+				judge = true;
 				projects[i].name = newName;
+				fs.writeFileSync(that.filename,JSON.stringify(projects));
 				break;
 			}
 		}
+		callback(err,judge);
 	});
 }
 
@@ -101,13 +110,13 @@ OpreatePro.prototype.addChild =  function(projectName,childProject,callback){
 		var projects = that.jsonToProject(jsonObj);
 		//遍历项目找到对应的项目，进行增加操作
 		var index = -1;  //对应项目的下标,-1是没找到该项目
+		var judge = true; //判断是否添加成功
 		for(var i = 0 ; i < projects.length ; i++)
 		{
 			var childs = projects[i].child;
 			if(projects[i].name == projectName)
 			{
 				//判断是否跟项目中的子目录重名
-				var judge = true;
 				for(var j = 0 ; j < childs.length; j++)
 				{
 					var child = childs[j];
@@ -121,56 +130,82 @@ OpreatePro.prototype.addChild =  function(projectName,childProject,callback){
 				break;
 			}
 		}
-		if(index == -1)
+		if(judge && index != -1)
 		{
-			projects[index].child.push():;
+			projects[index].child.push(childProject);
+			fs.writeFileSync(that.filename,JSON.stringify(projects));
 		}
-		callback(err,projects,judge);
+		callback(err,judge);
 	});
 }
 
-//查询所有项目
-OpreatePro.prototype.showProject =  function(callback)
+//根据项目名以及子目录名删除指定的项目子目录
+OpreatePro.prototype.deleteChild = function(projectName,childName,callback)
 {
 	that = this;
 	fs.readFile(that.filename,'utf8',function(err,data){
 		var jsonObj = JSON.parse(data);
 		var projects = that.jsonToProject(jsonObj);
-		callback(err,projects);
-	});
-}
-//根据项目名删除指定的项目
-OpreatePro.prototype.deleteProject = function(projectName,callback)
-{
-	that = this;
-	fs.readFile(that.filename,'utf8',function(err,data){
-		var jsonObj = JSON.parse(data);
-		var projects = that.jsonToProject(jsonObj);
+		var judge = false;  //判断是否删除成功
 		for(var i = 0 ; i < projects.length ; i++)
 		{
 			if(projects[i].name == projectName)
 			{
-				projects.splice(i,1);
+				var childs = projects[i].child;
+				for(var j = 0 ; j < childs.length; j++)
+				{
+					var child = childs[j];
+					if(child.childName == childName)
+					{
+						projects[i].child[j].splice(j,1);
+						judge = true;
+						break;
+					}
+				}
 				break;
 			}
 		}
-		callback(err,projects);
+		if(judge)
+		{
+			fs.writeFileSync(that.filename,JSON.stringify(projects));
+		}
+		callback(err,judge);
 	});
 }
 
-//更新项目的名称
-OpreatePro.prototype.updateProject = function(oldName,newName,callback)
+//更新项目中子目录的的名称
+OpreatePro.prototype.updateChild = function(projectName,oldName,newName,callback)
 {
 	that = this;
 	fs.readFile(that.filename,'utf8',function(err,data){
 		var jsonObj = JSON.parse(data);
 		var projects = that.jsonToProject(jsonObj);
+		var judge = false;
 		for(var i = 0 ; i < projects.length ; i++)
 		{
-			if(projects[i].name == oldName)
+			if(projects[i].name == projectName)
 			{
-				projects[i].name = newName;
+				var childs = projects[i].child;
+				for(var j = 0 ; j < childs.length ; j++)
+				{
+					var child = childs[j];
+					if(child.childName == oldName)
+					{
+						judge = true;
+						projects[i].child[j].childName = newName;
+						break;
+					}
+				}
 				break;
 			}
+			break;
 		}
+		if(judge)
+		{
+			fs.writeFileSync(that.filename,JSON.stringify(projects));
+		}
+		callback(err,judge);
 	});
+}
+
+
