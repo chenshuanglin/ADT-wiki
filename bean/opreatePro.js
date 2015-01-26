@@ -1,9 +1,14 @@
 var fs = require('fs');
+var Project = require('./Project');
+var ChildProject = require('./childProject');
+var AllProjects = require('./allProjects');
+
 var OpreatePro = function(filename)
 {
-	this.fliename = filename;
+	this.filename = filename;
 }
 
+module.exports = OpreatePro;
 //把json字符串对象变为Project对象
 OpreatePro.prototype.jsonToProject = function(jsonObj)
 {
@@ -21,6 +26,13 @@ OpreatePro.prototype.jsonToProject = function(jsonObj)
 		projects.push(project);
 	}
 	return projects;
+}
+
+//把projects写入文件中
+OpreatePro.prototype.projectsToFile = function(projects){
+	var allProjects = new AllProjects();
+	allProjects.project = projects;
+	fs.writeFileSync(this.filename,JSON.stringify(allProjects));
 }
 
 //增加项目
@@ -42,7 +54,7 @@ OpreatePro.prototype.addProject =  function(project,callback){
 		if(judge)
 		{
 			projects.push(project);
-			fs.writeFileSync(that.filename,JSON.stringify(projects));
+			that.projectsToFile(projects);
 		}
 		callback(err,judge);
 	});
@@ -72,7 +84,7 @@ OpreatePro.prototype.deleteProject = function(projectName,callback)
 			{
 				judge = true;
 				projects.splice(i,1);
-				fs.writeFileSync(that.filename,JSON.stringify(projects));
+				that.projectsToFile(projects);
 				break;
 			}
 		}
@@ -94,7 +106,7 @@ OpreatePro.prototype.updateProject = function(oldName,newName,callback)
 			{
 				judge = true;
 				projects[i].name = newName;
-				fs.writeFileSync(that.filename,JSON.stringify(projects));
+				that.projectsToFile(projects);
 				break;
 			}
 		}
@@ -133,7 +145,7 @@ OpreatePro.prototype.addChild =  function(projectName,childProject,callback){
 		if(judge && index != -1)
 		{
 			projects[index].child.push(childProject);
-			fs.writeFileSync(that.filename,JSON.stringify(projects));
+			that.projectsToFile(projects);
 		}
 		callback(err,judge);
 	});
@@ -167,7 +179,7 @@ OpreatePro.prototype.deleteChild = function(projectName,childName,callback)
 		}
 		if(judge)
 		{
-			fs.writeFileSync(that.filename,JSON.stringify(projects));
+			that.projectsToFile(projects);
 		}
 		callback(err,judge);
 	});
@@ -202,7 +214,7 @@ OpreatePro.prototype.updateChild = function(projectName,oldName,newName,callback
 		}
 		if(judge)
 		{
-			fs.writeFileSync(that.filename,JSON.stringify(projects));
+			that.projectsToFile(projects);
 		}
 		callback(err,judge);
 	});
