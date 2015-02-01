@@ -15,6 +15,7 @@ var edit = require('./routes/edit');
 var addArticle = require('./routes/addArticle');
 var updateArticle = require("./routes/updateArticle");
 var search = require("./routes/search");
+var profile = require("./routes/profile");
 //项目路由
 var projectDoc = require("./routes/projectDoc");
 
@@ -43,6 +44,7 @@ app.use('/updateArticle',updateArticle);
 app.use('/search',search);
 //项目文档
 app.use('/projectDoc',projectDoc);
+app.use('/profile',profile);
 
 //创建服务
 var server = app.listen(3000,function(){

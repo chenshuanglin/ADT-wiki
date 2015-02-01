@@ -1,0 +1,35 @@
+// BEGIN EXAMPLE TABLE PORTLET
+.portlet.box.blue
+  .portlet-title
+    .caption
+      i.icon-edit
+      | 编辑项目
+    .tools
+      a.collapse(href='javascript:;')
+      a.reload(href='javascript:;')
+  .portlet-body
+    .clearfix
+      .btn-group
+        button#sample_editable_1_new.btn.green
+          | 新 增 
+          i.icon-plus
+    table#sample_editable_1.table.table-striped.table-hover.table-bordered
+      thead
+        tr
+          th 项目名称
+          th 子标题(以符号/隔开)
+          th 编辑
+          th 删除
+      tbody
+        each project in projects
+          tr
+            td #{project.name}
+            td 
+              each child, i in project.child
+                =child.childName
+                | /
+            td
+              a.edit(href='javascript:;') 编辑
+            td
+              a.delete(href='javascript:;') 删除
+// END EXAMPLE TABLE PORTLET

@@ -54,29 +54,6 @@
             li
               a(href='/publicDoc?selectName='+item)
                 | #{item}
-    - projects = ["6.0","6.1"]
-    if selectParent == "项目管理"
-    else
-      li
-        a(href='javascript:;')
-          i.icon-folder-open
-          span.title 项目管理
-          span.arrow
-        ul.sub-menu
-          each project in projects
-            li
-              a(href='ui_general.html')
-                | #{project}
-                span.arrow
-              - childProjects = [];
-              if project == "6.0"
-                - childProjects = ["Sample link 1","Sample link 1"]
-              else
-                - childProjects = ["Sample link 1","Sample link 2","Sample link 3"]
-              ul.sub-menu
-                each childProject in childProjects
-                  li
-                    a(href='#') #{childProject}
     li
       a(href='javascript:;')
         i.icon-briefcase

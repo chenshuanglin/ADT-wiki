@@ -34,7 +34,16 @@ INSERT INTO `adt_wiki`.`tb_project_list` (`id`, `project_id`, `project_list`) VA
 INSERT INTO `adt_wiki`.`tb_project_list` (`id`, `project_id`, `project_list`) VALUES ('3', '2', '模块1');
 INSERT INTO `adt_wiki`.`tb_project_list` (`id`, `project_id`, `project_list`) VALUES ('4', '2', '模块2');
 INSERT INTO `adt_wiki`.`tb_project_list` (`id`, `project_id`, `project_list`) VALUES ('5', '1', '调试命令');
-INSERT INTO `adt_wiki`.`tb_project_list` (`id`, `project_id`, `project_list`) VALUES ('6', '2', '调试命令');
+INSERT INTO `adt_wiki`.`tb_project_list` (`id`, `project_id`, `project_list`) VALUES ('6', '2', 
+'调试命令');
 
-
+CREATE  TABLE `adt_wiki`.`tb_public` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `title` VARCHAR(45) NOT NULL ,
+  `content` TEXT NOT NULL ,
+  `contentTxt` TEXT NOT NULL ,
+  `type` VARCHAR(45) NOT NULL ,
+  `date` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id`) )
+DEFAULT CHARACTER SET = utf8;
 
