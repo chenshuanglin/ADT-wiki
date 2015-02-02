@@ -85,4 +85,129 @@ article.prototype.delete = function(callback) {
 	});
 };
 
+//获取所有的文章
+article.prototype.allArticle = function(callback){
+	that = this;
+	//调用async的异步串行执行
+	async.waterfall([
+		function (cb){
+			pool.getConnection(function (err,connection) {
+				// 获取连接
+				cb(err,connection);
+			})
+		},
+		function (conn,cb){
+			//发送到数据库的语句
+			var sql = 'SELECT * from '+that.tableName;
+			conn.query(sql,function(err,result){
+				conn.release();
+				cb(err,result);
+			});
+		}
+	],function(err,result){
+		//最终结果回调
+		callback(err,result);
+	});
+}
 
+//根据ID获取指定的数据
+article.prototype.getArticleById = function (callback){
+	that = this;
+	//调用async的异步串行执行
+	async.waterfall([
+		function (cb){
+			pool.getConnection(function (err,connection) {
+				// 获取连接
+				cb(err,connection);
+			})
+		},
+		function (conn,cb){
+			//发送到数据库的语句
+			var sql = 'SELECT * from '+that.tableName+'where id = ?';
+			conn.query(sql,[that.id],function(err,result){
+				conn.release();
+				cb(err,result);
+			});
+		}
+	],function(err,result){
+		//最终结果回调
+		callback(err,result);
+	});	
+}
+
+//根据指定ID获取指定的数据
+article.prototype.updateArticleById = function (callback) {
+	that = this;
+	//调用async的异步串行执行
+	async.waterfall([
+		function (cb){
+			pool.getConnection(function (err,connection) {
+				// 获取连接
+				cb(err,connection);
+			})
+		},
+		function (conn,cb){
+			//发送到数据库的语句
+			var sql = 'update '+that.tableName+' set ? where id = '+that.id;
+			//构造发送到数据库的数据
+			var post = {
+				tb_title: that.title,
+				tb_content: that.content,
+				tb_contentTxt: that.contentTxt,
+				tb_classify: that.classify,
+				tb_date: that.date
+			}
+			conn.query(sql,[that.id],function(err,result){
+				conn.release();
+				cb(err,result);
+			});
+		}
+	],function(err,result){
+		//最终结果回调
+		callback(err,result);
+	});	
+}
+
+//根据起始位置和结束位置获取数据
+article.prototype.getLimitArticle = function (begin,end,callback)
+{
+	that = this;
+	//调用async的异步串行执行
+	async.waterfall([
+		function (cb){
+			pool.getConnection(function (err,connection) {
+				// 获取连接
+				cb(err,connection);
+			})
+		},
+		function (conn,cb){
+			//发送到数据库的语句
+			var sql = 'SELECT * from '+that.tableName+' limit '+conn.escape(begin)+','+conn.escape(end);
+			conn.query(sql,[that.id],function(err,result){
+				conn.release();
+				cb(err,result);
+			});
+		}
+	],function(err,result){
+		//最终结果回调
+		callback(err,result);
+	});	
+}
+
+var myArticle = new article();
+myArticle.title = "文章1";
+myArticle.content="未去除标签的文章";
+myArticle.contentTxt="去除标签的文章";
+myArticle.tableName="tb_public";
+myArticle.classify="no";
+var mydate = (new Date()).toLocaleString();
+myArticle.date=mydate;
+
+myArticle.save(function(err,result){
+	if (err) {
+		console.log("保存数据失败");
+		console.log(err);
+		return;
+	};
+	console.log(result);
+});
