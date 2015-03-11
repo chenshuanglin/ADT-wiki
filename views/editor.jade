@@ -1,0 +1,46 @@
+doctype html
+//if IE 8
+  html.ie8(lang='en')  
+//if IE 9
+  html.ie9(lang='en')  
+// [if !IE] <!
+html(lang='en')
+  // <![endif]
+  // BEGIN HEAD
+  head
+    meta(charset='utf-8')
+    title ADT文件 | 文档管理系统
+    meta(content='width=device-width, initial-scale=1.0', name='viewport')
+    meta(content='', name='description')
+    meta(content='', name='author')
+    // BEGIN GLOBAL MANDATORY STYLES
+    link(href='media/css/bootstrap.min.css', rel='stylesheet', type='text/css')
+    link(href='media/css/bootstrap-responsive.min.css', rel='stylesheet', type='text/css')
+    link(href='media/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='media/css/style-metro.css', rel='stylesheet', type='text/css')
+    link(href='media/css/style.css', rel='stylesheet', type='text/css')
+    link(href='media/css/style-responsive.css', rel='stylesheet', type='text/css')
+    link#style_color(href='media/css/default.css', rel='stylesheet', type='text/css')
+    link(href='media/css/uniform.default.css', rel='stylesheet', type='text/css')
+    link(rel='shortcut icon', href='media/image/favicon.ico')
+    script(type="text/javascript" charset="utf-8" src="/ueditor/ueditor.config.js")
+    script(src="/javascripts/jquery.min.js")
+    script(src="/ueditor/ueditor.all.min.js")
+    script(src="/ueditor/lang/zh-cn/zh-cn.js")
+    script(src="/javascripts/input.judge.js")
+  // END HEAD
+  // BEGIN BODY
+  body.page-header-fixed.page-boxed
+    include top
+    .container
+      // BEGIN CONTAINER
+      .page-container.row-fluid
+        // BEGIN SIDEBAR
+        include left
+        // BEGIN PAGE
+        include edit
+        // END PAGE
+    // END CONTAINER
+    // BEGIN FOOTER
+    include footer
+  // END BODY

@@ -194,20 +194,3 @@ article.prototype.getLimitArticle = function (begin,end,callback)
 	});	
 }
 
-var myArticle = new article();
-myArticle.title = "文章1";
-myArticle.content="未去除标签的文章";
-myArticle.contentTxt="去除标签的文章";
-myArticle.tableName="tb_public";
-myArticle.classify="no";
-var mydate = (new Date()).toLocaleString();
-myArticle.date=mydate;
-
-myArticle.save(function(err,result){
-	if (err) {
-		console.log("保存数据失败");
-		console.log(err);
-		return;
-	};
-	console.log(result);
-});

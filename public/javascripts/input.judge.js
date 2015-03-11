@@ -1,8 +1,10 @@
 $(document).ready(function(){
 	$('#commit-edit').click(function() {
 		var mytitle = $('#mytitle').val();
+		var tabName = $('#hiddenTab').val();
 		var myContent = getContent();
 		var contentTxt = getContentTxt();
+		var myClassify = $('#hiddenTab1').val();
 		if( mytitle == "" || myContent == ""){
 			alert("标题或者内容为空");
 		}
@@ -13,19 +15,23 @@ $(document).ready(function(){
 				sendTime: (new Date()).getTime(),
 				title:mytitle,
 				content:myContent,
-				contentTxt:contentTxt
+				contentTxt:contentTxt,
+				tabName:tabName,
+				classify:myClassify
 			},
 			function(data,status){
-				if(data == "yes")
+				myObj = jQuery.parseJSON(data);
+				if(myObj.isSuccess == "yes")
 				{
 					var mytime = (new Date()).getTime();
-					location.href="/showArticle?sendTime"+mytime;
+					location.href="/content?id="+myObj.id+"&tabName="+myObj.tab+"&sendTime="+mytime;
 				}
 				else
 				{
-					alert("不小心就添加失败了^__^");
+					alert("不小心就更新失败了^__^");
 				}
-			});
+				}
+			);
 		}		
 	});
 
@@ -34,7 +40,9 @@ $(document).ready(function(){
 		var mytitle = $('#mytitle').val();
 		var myContent = getContent();
 		var id = getArticleId();
+		var tabName = $('#hiddenTab').val();
 		var contentTxt = getContentTxt();
+		var myClassify = $('#hiddenTab1').val();
 		if( mytitle == "" || myContent == ""){
 			alert("标题或者内容为空");
 		}
@@ -45,14 +53,17 @@ $(document).ready(function(){
 				sendTime: (new Date()).getTime(),
 				title:mytitle,
 				content:myContent,
+				contentTxt:contentTxt,
+				tabName:tabName,
 				id:id,
-				contentTxt:contentTxt
+				classify:myClassify
 			},
 			function(data,status){
-				if(data == "yes")
+				myObj = jQuery.parseJSON(data);
+				if(myObj.isSuccess == "yes")
 				{
 					var mytime = (new Date()).getTime();
-					location.href="/content?id="+id+"&sendTime="+mytime;
+					location.href="/content?id="+myObj.id+"&tabName="+myObj.tab+"&sendTime="+mytime;
 				}
 				else
 				{

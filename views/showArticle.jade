@@ -1,22 +1,40 @@
-html
-    head
-    title ADT wiki
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet")
-    script(src="/javascripts/jquery.min.js")
-    script(src="/javascripts/bootstrap.min.js")
-    body
-        include ./header.jade
-        div.container-fluid
-            div.row(style="margin-top:80px;")
-                div.col-xs-3.col-md-2
-                div.col-xs-12.col-md-8
-                    ol.breadcrumb
-                        li
-                            a(href="/") 主页
-                        li.active 文章列表
-                    ul.list-group
-                        for article in articles
-                            li.list-group-item 
-                                a.navbar-link(href="/content?id="+article.id)=article.title
-                div.col-xs-3.col-md-2
+.page-content
+  // BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM
+  #portlet-config.modal.hide
+    .modal-header
+      button.close(data-dismiss='modal', type='button')
+      h3 portlet Settings
+    .modal-body
+      p Here will be a configuration form
+  // END SAMPLE PORTLET CONFIGURATION MODAL FORM
+  // BEGIN PAGE CONTAINER
+  .container-fluid
+    // BEGIN PAGE HEADER
+    .row-fluid
+      .span12
+        // BEGIN STYLE CUSTOMIZER
+        ul.breadcrumb(style="margin-top:20px; margin-bottom:10px;")
+          li
+            i.icon-home
+            a(href='/') 主页
+            i.icon-angle-right
+
+          li
+            a(href='#') #{selectParent}
+            i.icon-angle-right
+          li
+            a(href='#') #{selectName}
+        p(style="float:right")
+          a.btn(href="/edit?selectParent=#{selectParent}&selectName=#{selectName}&id=#{article.tb_id}")
+            i.icon-plus 编辑
+        // END PAGE TITLE & BREADCRUMB
+    // END PAGE HEADER
+    // BEGIN PAGE CONTENT
+    .row-fluid(style="border:1px solid #ECECEC; min-height:500px;")
+      .span12
+        div(style="text-align:center;")
+          h1 #{article.tb_title}
+        div(style="padding:2px 8px 2px 8px;")
+          !{article.tb_content}
+    // END PAGE CONTENT
+  // END PAGE CONTAINER

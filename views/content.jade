@@ -1,30 +1,26 @@
-html
-    head
-    title ADT wiki
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet")
-    link(href="/stylesheets/style.css" media="screen" rel="stylesheet")
-    script(src="/javascripts/jquery.min.js")
-    script(src="/javascripts/bootstrap.min.js")
-    body
-        include ./header.jade
-        div.container-fluid
-            div.row(style="margin-top:80px;")
-                div.col-xs-3.col-md-2
-                div.col-xs-12.col-md-8
-                    for article in articles
-                        div.navbar.row(style="margin-bottom:10px")
-                            div.col-xs-12.col-md-8(style="padding-right:0px;")
-                                ol.breadcrumb
-                                    li
-                                        a(href="/") 主页
-                                    li
-                                        a(href="/showArticle") 文章列表
-                                    li.active=article.title    
-                            div.col-xs-6.col-md-4(style="text-align:right;padding-left:0px;")
-                                ol.breadcrumb
-                                    li
-                                        a(href="/edit?isEdit=1&id="+article.id) 编辑
-                        div.navbar.navbar-default(style="padding:10px 50px 10px 50px; min-height:400px; background-color:#fff !important;")
-                            !{article.content}
-                div.col-xs-2.col-md-2
+doctype html
+//if IE 8
+  html.ie8(lang='en')  
+//if IE 9
+  html.ie9(lang='en')  
+// [if !IE] <!
+html(lang='en')
+  // <![endif]
+  // BEGIN HEAD
+  head
+    include header
+  // END HEAD
+  // BEGIN BODY
+  body.page-header-fixed.page-boxed
+    include top
+    .container
+      // BEGIN CONTAINER
+      .page-container.row-fluid
+        // BEGIN SIDEBAR
+        include left
+        // BEGIN PAGE
+        include showArticle
+        // END PAGE
+    // END CONTAINER
+    include footer
+  // END BODY

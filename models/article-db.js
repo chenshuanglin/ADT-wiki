@@ -4,7 +4,7 @@ var pool = mysql.createPool({
     host : 'localhost',
     user : 'root',
     password : 'adtwiki',
-    database : 'adt_wiki',
+    database : 'adtwiki',
     insecureAuth: true
 });
 
@@ -14,8 +14,9 @@ var Article = function(article)
     this.title = article.title;
     this.content = article.content;
     this.contentTxt = article.contentTxt;
+    this.classify = article.classify;
     this.mydate = article.mydate;
-    this.mytype = article.mytype;
+    this.tableName = article.tableName;
 }
 
 
@@ -38,8 +39,9 @@ Article.prototype.save = function(callback)
             return;
         }
         console.log('connected as id ' + connection.threadId);
-        var post = {title: that.title, content: that.content , contentTxt: that.contentTxt, mydate:that.mydate,type: that.mytype};
-        connection.query('insert into article set ?',post,function(err,result){
+        var sql = "insert into "+that.tableName+" set ?";
+        var post = {tb_title: that.title, tb_content: that.content , tb_contentTxt: that.contentTxt, tb_classify: that.classify, tb_date:that.mydate};
+        connection.query(sql,post,function(err,result){
             if(err) {   
                 console.log('insert article Error: '+ err.message);
                 return;
@@ -98,14 +100,15 @@ Article.prototype.showAll = function(callback)
 }
 
 //根据指定ID获取指定的数据
-Article.prototype.getArticleById = function (article_id,callback) {
+Article.prototype.getArticleById = function (callback) {
+	that = this;
     pool.getConnection(function(err,connection){
         if(err){
             console.error('error connecting: ' + err.stack);
             return;
         }
-        var sql = 'SELECT * from article where id = ?';
-        connection.query(sql,[article_id],function(err,rows,result){
+        var sql = 'SELECT * from '+that.tableName+' where tb_id = ?';
+        connection.query(sql,[that.id],function(err,rows,result){
              if (err) {
                 console.log('get article by Id Error: '+err.message);
             }
@@ -117,15 +120,15 @@ Article.prototype.getArticleById = function (article_id,callback) {
 
 //根据指定ID更新指定的数据
 //根据指定ID获取指定的数据
-Article.prototype.updateArticleById = function (article_id,callback) {
+Article.prototype.updateArticleById = function (callback) {
     var that = this;
     pool.getConnection(function(err,connection){
         if(err){
             console.error('error connecting: ' + err.stack);
             return;
         }
-        var sql = 'update article set ? where id ='+article_id;
-        var post = {title: that.title, content: that.content , contentTxt: that.contentTxt, mydate:that.mydate};
+        var sql = 'update '+that.tableName+' set ? where tb_id ='+that.id;
+        var post = {tb_title: that.title, tb_content: that.content , tb_contentTxt: that.contentTxt, tb_classify: that.classify, tb_date:that.mydate};
         connection.query(sql,post,function(err,rows,result){
              if (err) {
                 console.log('get article by Id Error: '+err.message);

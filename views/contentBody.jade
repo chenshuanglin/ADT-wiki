@@ -21,8 +21,11 @@
 
           li
             a(href='#') #{selectParent}
+            i.icon-angle-right
+          li
+            a(href='#') #{selectName}
         p(style="float:right")
-          a.btn
+          a.btn(href="/edit?selectParent=#{selectParent}&selectName=#{selectName}")
             i.icon-plus 添加文章
         // END PAGE TITLE & BREADCRUMB
     // END PAGE HEADER
