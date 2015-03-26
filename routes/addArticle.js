@@ -22,6 +22,7 @@ router.use('/',function (req,res) {
 	//获取时间
 	var now_date = new Date();
 	var mydate = now_date.toLocaleString();
+	var firstTxt = getFirstTxt(contentTxt);
 	var myArticle = new Article({
 		id: 1,
     	title: mytitle,
@@ -29,6 +30,7 @@ router.use('/',function (req,res) {
     	contentTxt: contentTxt,
     	classify: classify,
     	mydate: mydate,
+    	first: firstTxt,
     	tableName: tableName
 	});
 	myArticle.save(function(err,result){
@@ -45,5 +47,18 @@ router.use('/',function (req,res) {
 	
 });
 
+function getFirstTxt (contentTxt) {
+	var COUNT = 180;
+	var firstTxt = "";
+	if(contentTxt.length < COUNT)
+	{
+		firstTxt = contentTxt.substr(0,contentTxt.length);
+	}
+	else
+	{
+		firstTxt = contentTxt.substring(0,COUNT);
+	}
+	return firstTxt;
+}
 
 module.exports = router;

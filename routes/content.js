@@ -19,6 +19,7 @@ router.get('/', function(req, res) {
     	contentTxt: "",
     	classify: "",
     	mydate: "",
+    	first:"",
     	tableName: tableName
 	});
 	var selectParent = tb_operate.getChineseName(tableName);

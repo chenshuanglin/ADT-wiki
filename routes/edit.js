@@ -25,6 +25,7 @@ router.get('/', function(req, res) {
     		contentTxt: "",
     		classify: "",
     		mydate: "",
+    		first:"",
     		tableName: tableName
 		});
 		myArticle.getArticleById(function(err,rows,result){

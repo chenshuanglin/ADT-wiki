@@ -15,6 +15,7 @@ var Article = function(article)
     this.content = article.content;
     this.contentTxt = article.contentTxt;
     this.classify = article.classify;
+    this.first = article.first;
     this.mydate = article.mydate;
     this.tableName = article.tableName;
 }
@@ -40,7 +41,7 @@ Article.prototype.save = function(callback)
         }
         console.log('connected as id ' + connection.threadId);
         var sql = "insert into "+that.tableName+" set ?";
-        var post = {tb_title: that.title, tb_content: that.content , tb_contentTxt: that.contentTxt, tb_classify: that.classify, tb_date:that.mydate};
+        var post = {tb_title: that.title, tb_content: that.content , tb_contentTxt: that.contentTxt, tb_classify: that.classify, tb_date:that.mydate, tb_first:that.first};
         connection.query(sql,post,function(err,result){
             if(err) {   
                 console.log('insert article Error: '+ err.message);
@@ -81,14 +82,15 @@ Article.prototype.delete = function(article_id,callback)
 
 Article.prototype.showAll = function(callback)
 {
+	that = this;
     pool.getConnection(function(err,connection){
         if(err){
             console.error('error connecting: ' + err.stack);
             return;
         }
         console.log('connected as id ' + connection.threadId);
-
-        connection.query('SELECT * from article', function(err, rows, result) {
+		var sql = 'select * from '+that.tableName;
+        connection.query(sql, function(err, rows, result) {
             if (err) {
                 console.log('showall article Error: '+err.message);
             }
@@ -128,7 +130,7 @@ Article.prototype.updateArticleById = function (callback) {
             return;
         }
         var sql = 'update '+that.tableName+' set ? where tb_id ='+that.id;
-        var post = {tb_title: that.title, tb_content: that.content , tb_contentTxt: that.contentTxt, tb_classify: that.classify, tb_date:that.mydate};
+        var post = {tb_title: that.title, tb_content: that.content , tb_contentTxt: that.contentTxt, tb_classify: that.classify, tb_date:that.mydate, tb_first:that.first};
         connection.query(sql,post,function(err,rows,result){
              if (err) {
                 console.log('get article by Id Error: '+err.message);
