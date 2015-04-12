@@ -36,11 +36,11 @@
           each item, i in items
             if item == selectName
               li.active
-                a(href='/publicDoc?selectName='+item)
+                a(href='/doc?selectName=#{item}&tab=public')
                   | #{item}
             else
               li
-                a(href='/publicDoc?selectName='+item)
+                a(href='/doc?selectName=#{item}&tab=public')
                   | #{item}
     else
       li
@@ -52,35 +52,96 @@
         ul.sub-menu
           each item, i in items
             li
-              a(href='/publicDoc?selectName='+item)
+              a(href='/doc?selectName=#{item}&tab=public')
                 | #{item}
-    li
-      a(href='javascript:;')
-        i.icon-briefcase
-        span.title 个人文档
-        span.arrow
-      ul.sub-menu
-        - persons = ["crc","csl","cl","hz","bobe","hj","cjp","nyz","jw","zhy","tzx","gbl","zrs","zw"]
-        each person in persons
-          li
-            a(href='page_blog.html')
-              i.icon-comments
-              |                 #{person}
-     li
-      a(href='javascript:;')
-        i.icon-table
-        span.title 新员工学习文档
-    li
-      a(href='javascript:;')
-        i.icon-gift
-        span.title 其他文档
+    - persons = ["crc","csl","cl","hz","bobe","hj","cjp","nyz","jw","zhy","tzx","gbl","zrs","zw"]
+    if selectParent == "个人文档"
+      li.active
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 个人文档
+          span.selected
+          span.arrow
+        ul.sub-menu
+          each person, i in persons
+            if person == selectName
+              li.active
+                a(href='/doc?selectName=#{person}&tab=person')
+                  | #{person}
+            else
+              li
+                a(href='/doc?selectName=#{person}&tab=person')
+                  | #{person}
+    else
+      li
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 个人文档
+          span.selected
+          span.arrow
+        ul.sub-menu
+          each person, i in persons
+            li
+              a(href='/doc?selectName=#{person}&tab=person')
+                | #{person}     
+    if selectParent == "新员工学习文档"
+      li.active
+        a(href='/doc?selectName=newPerson&tab=newPerson')
+          i.icon-folder-open
+          span.title 新员工学习文档
+          span.selected
+    else
+      li
+        a(href='/doc?selectName=newPerson&tab=newPerson')
+          i.icon-table
+          span.title 新员工学习文档
+    if selectParent == "其他文档"
+      li.active
+        a(href='/doc?selectName=其他文档&tab=other')
+          i.icon-folder-open
+          span.title 其他文档
+          span.selected
+    else
+      li
+        a(href='/doc?selectName=其他文档&tab=other')
+          i.icon-table
+          span.title 其他文档
+    - links = ["局域网链接","外部网链接"]
+    if selectParent == "相关链接"
+      li.active
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 相关链接
+          span.selected
+          span.arrow
+        ul.sub-menu
+          each link, i in links
+            if link == selectName
+              li.active
+                a(href='/doc?selectName=#{link}&tab=links')
+                  | #{link}
+            else
+              li
+                a(href='/doc?selectName=#{link}&tab=links')
+                  | #{link}
+    else
+      li
+        a(href='javascript:;')
+          i.icon-folder-open
+          span.title 相关链接
+          span.selected
+          span.arrow
+        ul.sub-menu
+          each link, i in links
+            li
+              a(href='/doc?selectName=#{link}&tab=links')
+                | #{link}
     li
       a(href='javascript:;')
         i.icon-map-marker
         span.title 相关链接
         span.arrow
       ul.sub-menu
-        - links = ["局域网链接","外部网链接"]
         each link in links
           li
             a(href='maps_google.html')

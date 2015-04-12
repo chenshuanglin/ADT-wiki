@@ -21,9 +21,23 @@
 
           li
             a(href='#') #{selectParent}
-            i.icon-angle-right
-          li
-            a(href='#') #{selectName}
+            case selectParent
+              when "公共文档"  
+                i.icon-angle-right
+              when "个人文档"
+                i.icon-angle-right
+              when "相关链接"
+                i.icon-angle-right
+          case selectParent
+              when "公共文档"  
+                li
+                  a(href='#' style="text-decoration:none; cursor:text;") #{selectName} 
+              when "个人文档"
+                li
+                  a(href='#' style="text-decoration:none; cursor:text;") #{selectName} 
+              when "相关链接"
+                li
+                  a(href='#' style="text-decoration:none; cursor:text;") #{selectName} 
         // END PAGE TITLE & BREADCRUMB
     // END PAGE HEADER
     // BEGIN PAGE CONTENT

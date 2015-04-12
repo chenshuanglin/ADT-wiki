@@ -20,10 +20,24 @@
             i.icon-angle-right
 
           li
-            a(href='#') #{selectParent}
-            i.icon-angle-right
-          li
-            a(href='#') #{selectName}
+            a(href="#" style="text-decoration:none; cursor:text;") #{selectParent}
+            case selectParent
+              when "公共文档"  
+                i.icon-angle-right
+              when "个人文档"
+                i.icon-angle-right
+              when "相关链接"
+                i.icon-angle-right
+          case selectParent
+              when "公共文档"  
+                li
+                  a(href='#' style="text-decoration:none; cursor:text;") #{selectName} 
+              when "个人文档"
+                li
+                  a(href='#' style="text-decoration:none; cursor:text;") #{selectName} 
+              when "相关链接"
+                li
+                  a(href='#' style="text-decoration:none; cursor:text;") #{selectName} 
         p(style="float:right")
           a.btn(href="/edit?selectParent=#{selectParent}&selectName=#{selectName}")
             i.icon-plus 添加文章
@@ -33,16 +47,19 @@
     .row-fluid
       .span12
         ul.timeline
-          - each article in articles
-            li.timeline-grey
-              .timeline-body(style="margin-left:10px;")
-                h2 #{articles.tb_title}
-                .timeline-content
-                  img.timeline-img.pull-left(src='media/image/2.jpg', alt='')
-                  |                     #{article.tb_first}
-                .timeline-footer
-                  a.btn.green.pull-right(href='#')
-                    | Read more 
-                    i.m-icon-swapright.m-icon-white
+          if(articles)
+            -each article in articles
+              li.timeline-grey
+                .timeline-body(style="margin-left:10px;")
+                  h2 #{articles.tb_title}
+                  .timeline-content
+                    img.timeline-img.pull-left(src='media/image/2.jpg', alt='')
+                    |                     #{article.tb_first}
+                  .timeline-footer
+                    a.btn.green.pull-right(href='/content?id=#{article.tb_id}&tabName=#{tabName}')
+                      | Read more 
+                      i.m-icon-swapright.m-icon-white
+          else
+            center ADT文档系统，主要用于文档积累和文档参考
     // END PAGE CONTENT
   // END PAGE CONTAINER

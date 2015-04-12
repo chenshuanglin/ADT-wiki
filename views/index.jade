@@ -1,18 +1,26 @@
-html
-    head
-    title ADT文档资料学习基地
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(href="/stylesheets/bootstrap.min.css" media="screen" rel="stylesheet")
-    link(href="/stylesheets/style.css" media="screen" rel="stylesheet")
-    script(src="/javascripts/jquery.min.js")
-    script(src="/javascripts/search.tip.js")
-    script(src="/javascripts/bootstrap.min.js")
-    body(style="overflow-y:hidden")
-        include ./header.jade
-        div.container(style="width:100%;")
-            div.row(style="margin-top:50px;")
-                div.col-md-2(style="padding-left:0")
-                    include ./left.jade
-                div.col-md-10(style="padding-right:0")
-                    div.embed-responsive.embed-responsive-16by9
-                        iframe.embed-responsive-item(src="http://www.cnblogs.com/GaoHuhu/archive/2012/09/26/2703474.html" style="overflow:scroll; height:100%;" name="main")
+doctype html
+//if IE 8
+  html.ie8(lang='en')  
+//if IE 9
+  html.ie9(lang='en')  
+// [if !IE] <!
+html(lang='en')
+  // <![endif]
+  // BEGIN HEAD
+  head
+    include header
+  // END HEAD
+  // BEGIN BODY
+  body.page-header-fixed.page-boxed
+    include top
+    .container
+      // BEGIN CONTAINER
+      .page-container.row-fluid
+        // BEGIN SIDEBAR
+        include left
+        // BEGIN PAGE
+        include contentBody
+        // END PAGE
+    // END CONTAINER
+    include footer
+  // END BODY

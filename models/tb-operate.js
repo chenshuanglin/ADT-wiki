@@ -16,6 +16,9 @@ tbOperate.prototype.getChineseName = function (tb_name){
 		case "tb_other":
 			returnStr = "其他文档";
 			break;
+		case "tb_links":
+			returnStr = "相关链接";
+			break;
 		default:
 			break;
 	}
@@ -37,7 +40,9 @@ tbOperate.prototype.isTable = function (tb_name){
 			is_table = true;
 			break;
 		case "tb_other":
-			ris_table = true;
+			is_table = true;
+			break;
+		case "tb_links":
 			break;
 		default:
 			break;
@@ -58,11 +63,11 @@ tbOperate.prototype.getTablename = function (chineseName){
 		case "新员工学习文档":
 			tableName = "tb_newPerson";
 			break;
-		case "个人文档":
-			tableName = "tb_person";
-			break;
 		case "其他文档":
 			tableName = "tb_other";
+			break;
+		case "相关链接":
+			tableName = "tb_links";
 			break;
 		default:
 			break;

@@ -49,7 +49,7 @@ router.use('/',function (req,res) {
 });
 
 function getFirstTxt (contentTxt) {
-	var COUNT = 180;
+	var COUNT = 200;
 	var firstTxt = "";
 	if(contentTxt.length < COUNT)
 	{
@@ -59,6 +59,7 @@ function getFirstTxt (contentTxt) {
 	{
 		firstTxt = contentTxt.substring(0,COUNT);
 	}
+	firstTxt = firstTxt + "....";
 	return firstTxt;
 }
 

@@ -89,7 +89,7 @@ Article.prototype.showAll = function(callback)
             return;
         }
         console.log('connected as id ' + connection.threadId);
-		var sql = 'select * from '+that.tableName;
+		var sql = 'select * from '+that.tableName+' where tb_classify = "'+that.classify+'"';
         connection.query(sql, function(err, rows, result) {
             if (err) {
                 console.log('showall article Error: '+err.message);

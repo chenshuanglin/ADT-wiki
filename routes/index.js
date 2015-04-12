@@ -7,7 +7,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	res.render('newIndex',{selectParent:"ADT文档系统介绍"});
+	res.render('index',{selectParent:"ADT文档系统介绍"});
 });
 
 module.exports = router;

@@ -37,7 +37,7 @@ app.use('/', routes);
 app.use('/edit',edit);
 app.use('/users', users);
 app.use('/ueditor/ue',myueditor);
-app.use('/publicDoc',publicDoc);
+app.use('/doc',publicDoc);
 app.use('/content',content);
 app.use('/addArticle',addArticle);
 app.use('/updateArticle',updateArticle);

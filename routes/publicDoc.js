@@ -13,11 +13,17 @@ router.get('/', function(req, res) {
 	var tb_operate = new tbOperate();
 	var isTable = tb_operate.isTable(tableName);
 	var selectParent = tb_operate.getChineseName(tableName);
+	console.log(isTable);
 	if(!isTable)
 	{
 		res.render('index');
 		return;
 	}
+	//新员工学习文档的判断
+	if (tableName == "tb_newPerson") {
+		selectName="新员工学习文档";
+	}
+	console.log(tableName);
 	var myArticle = new Article({
 		id: 1,
     	title: "",
@@ -32,7 +38,7 @@ router.get('/', function(req, res) {
 		if (err) {
 			res.send("<h1>获取数据失败</h1>");
 		} else{
-			res.render('publicDoc',{selectName:selectName,selectParent:selectParent,articles:rows});
+			res.render('publicDoc',{selectName:selectName,selectParent:selectParent,articles:rows,tabName:tableName});
 		}
 	})
 }); 
